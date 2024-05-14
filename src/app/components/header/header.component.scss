@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #6E7B8B;
+    padding: 0px 0px;
+    .collapse {
+        justify-content: flex-end !important;
+        .navbar-nav{
+            .nav-link {
+                font-weight: 600;
+            }
+            .nav-item {
+                margin: 10px 50px;
+            }
+            .login-button {
+                background-color: #D9D9D9;
+                a {
+                    color: #6E7B8B;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

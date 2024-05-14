@@ -30,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"            ],
+              "src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -93,8 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "efb26cdb-55ca-4512-9918-a0ccf10b3a98",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

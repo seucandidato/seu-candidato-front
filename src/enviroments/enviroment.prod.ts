@@ -1,1 +1,11 @@
-//TODO configurar
+declare global {
+    interface Window {
+      env: any;
+    }
+}
+  
+export const environment = {
+    production: true,
+    env: (window as any)['env'] && (window as any)['env']['ENV'],
+    apiBack: (window as any)['env'] && (window as any)['env']['BACKEND_API'],
+};
