@@ -7,9 +7,8 @@ import { AuthGuard } from './pages/auth/auth.guard';
 import { AuthService } from './pages/auth/auth.service';
 
 export const routes: Routes = [
-    {path: '', component: HomeComponent},
-    {path: 'login', component: AuthComponent},
-    {path: 'logout', redirectTo: '/login', resolve: { logout: AuthService }},
-    {path: 'cms', component: CmsHomeComponent, canActivate: [AuthGuard]},
-    {path: '**', component: NotFoundComponent}
+    { path: '', component: HomeComponent },
+    { path: 'login', component: AuthComponent },
+    { path: 'cms', component: CmsHomeComponent, canActivate: [AuthGuard] },
+    { path: '**', component: NotFoundComponent }
 ];

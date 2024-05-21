@@ -1,12 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand col-2" routerLink="{{data.navbar_route}}" routerLinkActive="active">
-            <img src="./assets/medias/logo.png" alt="Logo SeuCandidato.com" class="img-fluid">
-        </a>
+        <div class="col-2">
+            <a class="navbar-brand" routerLink="{{data.navbar_route}}" routerLinkActive="active">
+                <img src="./assets/medias/logo.png" alt="Logo SeuCandidato.com" class="img-fluid">
+            </a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse col" id="navbarNav">
+        <div class="collapse navbar-collapse col-10" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 @for (item of data.items; track $index) {
                     @if (!item.main) {
@@ -19,13 +21,17 @@
                                 <a class="nav-link" routerLink="{{item.route}}" routerLinkActive="active">{{item.name}}</a>
                             </li>
                         } @else {
-                            <li class="nav-item dropdown login-button">
+                            <li class="nav-item dropdown col login-button">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   {{item.name}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @for (itemSubmenu of item.submenu; track $index) {
-                                        <a class="dropdown-item" href="{{itemSubmenu.route}}">{{itemSubmenu.name}}</a>
+                                        @if (itemSubmenu.name === 'Sair') {
+                                            <a class="dropdown-item" href="{{itemSubmenu.route}}">{{itemSubmenu.name}}</a>
+                                        } @else {
+                                            <a class="dropdown-item" href="{{itemSubmenu.route}}">{{itemSubmenu.name}}</a>
+                                        }
                                     }
                                 </div>
                             </li>

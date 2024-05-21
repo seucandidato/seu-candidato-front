@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -13,11 +12,11 @@ import { from } from 'rxjs';
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   providers: [AuthApiService, AuthService],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit{
+export class AuthComponent implements OnInit {
   @Input() submit = (form: FormGroup) => {};
-  
+
   form: FormGroup;
 
   constructor(
@@ -30,30 +29,29 @@ export class AuthComponent implements OnInit{
       password: new FormControl('', [Validators.required])
     });
   }
-  
+
   ngOnInit(): void {
     this.authService.loggedIn.subscribe((loggedIn) => {
-      console.log('After logout:', loggedIn);
+      if (loggedIn) {
+        console.log(loggedIn);
+        // this.router.navigate(['cms']);
+        // window.location.reload();
+      }
     });
   }
 
   login() {
     const data = this.form.value;
     try {
-      if(data) {
-        this.authApiService
-        .authApiService(data)
-        .subscribe((response) => {
-          if(response && response.access_token) {
+      if (data) {
+        this.authApiService.authApiService(data).subscribe((response) => {
+          if (response && response.access_token) {
             this.authService.login(response.access_token);
           }
         });
       }
     } catch (error) {
       console.error(error);
-    } 
-  }
-  logout() {
-    this.authService.logout();
+    }
   }
 }
