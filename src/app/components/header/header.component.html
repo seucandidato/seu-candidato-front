@@ -28,7 +28,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @for (itemSubmenu of item.submenu; track $index) {
                                         @if (itemSubmenu.name === 'Sair') {
-                                            <a class="dropdown-item" href="{{itemSubmenu.route}}">{{itemSubmenu.name}}</a>
+                                            <a class="dropdown-item" (click)="logout()" >{{itemSubmenu.name}}</a>
                                         } @else {
                                             <a class="dropdown-item" href="{{itemSubmenu.route}}">{{itemSubmenu.name}}</a>
                                         }
