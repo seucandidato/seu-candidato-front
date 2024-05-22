@@ -34,6 +34,9 @@ export class AuthComponent implements OnInit {
     this.authService.loggedIn.subscribe((loggedIn) => {
       if (loggedIn) {
         console.log(loggedIn);
+        this.router.navigateByUrl('/cms').then(() => {
+          window.location.reload();
+        });
       }
     });
   }
