@@ -1,0 +1,29 @@
+.bg-register{
+    padding-bottom: 15px;
+    img {
+        // fazer a imagem ocupar 100% da largura da tela
+        width: 100%;
+    }
+}
+
+.form-group {
+    input[type=number]::-webkit-inner-spin-button { 
+        -webkit-appearance: none !important;
+    }
+    input[type=number] { 
+        -moz-appearance: textfield !important;
+        appearance: textfield !important;
+    }
+
+    button {
+        margin: 30px 0px;
+        padding: 15px 70px;
+        background-color: #6E7B8B;
+        font-family: 'Inter';
+        font-size: 16px;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+}

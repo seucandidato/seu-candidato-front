@@ -1,0 +1,50 @@
+<div class="bg-register">
+    <img class="img-header-register" src="./../../../assets/medias/bg-register.png" alt="Aperto de mãos">
+</div>
+<div class="container pd-top15">
+    <form [formGroup]='form'>
+        <div class="form-group">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="name">Nome</label>
+                        <input formControlName='name' type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Nome">
+                        @if (form.get('name')?.touched && form.get('name')?.errors?.['required']) {<div>Nome é obrigatório.</div>}
+                        @if (form.get('name')?.touched && form.get('name')?.errors?.['minlength']) {<div>Nome deve ter pelo menos 3 caracteres.</div>}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="email">Email</label>
+                        <input formControlName='email' type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                        @if (form.get('email')?.touched && form.get('email')?.errors?.['required']) {<div>Email é obrigatório.</div>}
+                        @if (form.get('email')?.touched && form.get('email')?.errors?.['email']) {<div>Email não é válido.</div>}
+                    </div>
+                    <div class="col-6">
+                        <label for="phone">Telefone</label>
+                        <input formControlName='phone' type="number" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Telefone">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="password">Senha</label>
+                        <input formControlName='password' type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Senha">
+                        @if (form.get('password')?.touched && form.get('password')?.errors?.['required']) {<div>Senha é obrigatória.</div>}
+                        @if (form.get('password')?.touched && form.get('password')?.errors?.['minlength']) {<div>Senha deve ter pelo menos 8 caracteres.</div>}
+                    </div>
+                    <div class="col-6">
+                        <label for="confirmPassword">Confirme sua senha</label>
+                        <input formControlName='confirmPassword' type="password" class="form-control" id="confirmPassword" aria-describedby="confirmPasswordHelp" placeholder="Confirme sua senha">
+                        @if (!confirmedPassword) {<div>Senhas não são identicas</div>}
+                    </div>
+                </div>
+                <p class="text-center text-register">
+                    <input formControlName='confirmTerms' type="checkbox" id="confirmTerms" aria-describedby="confirmTermsHelp">    
+                    Aceitar os <a href="/termos-de-uso" target="_blank">TERMOS E CONDIÇÕES DE USO DE POLÍTICA DE PRIVACIDADE</a>
+                    @if (form.get('confirmTerms')?.touched && form.get('confirmTerms')?.errors?.['requiredTrue']) {<div>Você deve aceitar os termos e condições.</div>}
+                </p>
+                <div class="text-center">
+                    <button [disabled]="!this.confirmedSubmit" (click)="insertUser()" type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+        </div>
+    </form>
+</div>
