@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthApiService } from '../../services/authApi/auth-api.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor( private authApiService: AuthApiService ) {
+  constructor( private authApiService: AuthApiService, private router: Router ) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       username: new FormControl(''), 
@@ -48,8 +49,10 @@ export class RegisterComponent implements OnInit {
     try {
       if(data) {
         this.authApiService.insertUser(data).subscribe((response) => {
-          if (response) {
-            console.log(response)
+          if (response && response.message === 'Usuário criado com sucesso !') {
+            this.router.navigateByUrl('/cadastrado-com-sucesso').then(() => {
+              window.location.reload();
+            });
           }
         });
       }

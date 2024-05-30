@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
@@ -17,24 +17,27 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   post<Request, Response>( url: string, item: Request, headers: any = null): Observable<Response> {
-
     const postItem = {
       ...item,
     }
-
+  
     if (headers) {
       this.httpOptionsJson.headers = this.httpOptionsJson.headers.append(
         headers.key, 
         headers.value
       );
     }
-
-    return this.http.post<Response>(url, postItem, this.httpOptionsJson).pipe(
-      tap((response: any) => { 
-        this.log(response?.message); 
+  
+    const response = this.http.post<Response>(url, postItem, this.httpOptionsJson).pipe(
+      tap((response: any) => {
+        this.log(response?.message);
       }),
-      catchError(this.handlerError<Response>())
+      catchError((error: any) => {
+        return of(error);
+      })
     );
+  
+    return response;
   }
 
   private log(message: string) {

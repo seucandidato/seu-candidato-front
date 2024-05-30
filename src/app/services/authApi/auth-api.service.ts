@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { dataLogin } from '../interfaces/dataLogin';
-import { Observable } from 'rxjs';
-import { RequestService } from '../request/request.service';
-import { environment } from '../../../environments/environment';
-import { responseLogin } from '../interfaces/responseLogin';
-import { user } from '../interfaces/user';
-import { responseUser } from '../interfaces/responseUser';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { dataLogin } from "../interfaces/dataLogin";
+import { responseLogin } from "../interfaces/responseLogin";
+import { responseUser } from "../interfaces/responseUser";
+import { user } from "../interfaces/user";
+import { RequestService } from "../request/request.service";
+
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class AuthApiService {
 
   constructor(private requestService: RequestService) { }
 
-  authApiService(data: dataLogin, force = false): Observable<responseLogin> {
+  login(data: dataLogin, force = false): Observable<responseLogin> {
     if(!this.fetchedAuthLogin$ || force) {
       const url = `${environment.apiUrl}/${this.authLogin}`;
 

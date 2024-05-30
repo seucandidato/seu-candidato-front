@@ -1,4 +1,7 @@
 <section class="bg-auth">
+    @if (toast) { 
+        <app-toast [data]="toast"></app-toast>
+    }
     <div class="container">
         <div class="row">
             <div class="col-6 ">
@@ -20,7 +23,7 @@
                         <input formControlName='password' type="password" class="form-control" id="password" placeholder="Senha">
                     </div>
                     <div class="text-end">
-                        <button (click)="login()" type="submit" class="btn btn-primary">Login</button>
+                        <button [disabled]="!this.confirmedLogin" (click)="login()" type="submit" class="btn btn-primary">Login</button>
                     </div>
                     <p class="text-center text-register">Ainda não tem um usuário ? <a href="/registre-se">CLIQUE AQUI</a> para se cadastrar!</p>
                 </form>

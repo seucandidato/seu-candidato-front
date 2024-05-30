@@ -1,3 +1,4 @@
 export interface responseLogin {
-    access_token: string;
+    error?: {error: string, message: string};
+    access_token?: string;
 }
