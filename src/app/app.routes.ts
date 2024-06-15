@@ -6,6 +6,7 @@ import { CmsHomeComponent } from './pages/cms/cms-home/cms-home.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { RegisterComponent } from './pages/register/register.component';
 import { RegisterSuccessComponent } from './pages/register-success/register-success.component';
+import { CmsContactComponent } from './pages/cms/cms-contact/cms-contact.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'registre-se', component:  RegisterComponent},
     { path: 'cadastrado-com-sucesso', component:  RegisterSuccessComponent},
     { path: 'cms', component: CmsHomeComponent, canActivate: [AuthGuard] },
+    { path: 'cms/contato', component: CmsContactComponent, canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent }
 ];
