@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { buildMenu } from '../../services/interfaces/buildMenu';
 import { AuthService } from '../../pages/auth/auth.service';
@@ -11,14 +11,50 @@ import { AuthService } from '../../pages/auth/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnChanges{
-  @Input() data!: buildMenu;
+export class HeaderComponent implements OnInit{
+  navbar!: buildMenu;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['data'] && changes['data'].currentValue) {
-      this.data = changes['data'].currentValue;
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.buildHeaderMenuByRoute();
+      }
+    });
+    this.buildHeaderMenuByRoute();
+  }
+
+  buildHeaderMenuByRoute(): void {
+    // const cmsRoutes: any[] = ['/login', /registrer]
+    const cmsRoutes: string[] = ['/cms', '/cms/contato']
+
+    if(cmsRoutes.includes(this.router.url)) {
+      this.navbar = {
+        navbar_route: '/cms',
+        items: [
+          {name: 'Conteúdos', route: '/cms/conteudos'},
+          {name: 'Templates', route: '/cms/templates'},
+          {name: 'Pesquisa', route: '/cms/pesquisa'},
+          {name: 'Transparência', route: '/cms/transparencia'},
+          {name: 'Contato', route: '/cms/contato'},
+          {name: 'Perfil', main: true, submenu: [
+            {name: 'Configurações', route: '/cms/configuracoes'},
+            {name: 'Planos', route: '/cms/planos'},
+            {name: 'Sair', route: '/logout'},
+          ]},
+        ]
+      }
+    } else {
+      this.navbar = {
+        navbar_route: '/',
+        items: [
+          {name: 'Destaques', route: '#destaques'},
+          {name: 'Planos', route: '#planos'},
+          {name: 'Contato', route: '#contato'},
+          {name: 'Entrar', route: '/login', main: true},
+        ]
+      }
     }
   }
 

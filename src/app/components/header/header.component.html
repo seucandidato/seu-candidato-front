@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <div class="col-2">
-            <a class="navbar-brand" routerLink="{{data.navbar_route}}" routerLinkActive="active">
+            <a class="navbar-brand" routerLink="{{navbar.navbar_route}}" routerLinkActive="active">
                 <img src="./assets/medias/logo.png" alt="Logo SeuCandidato.com" class="img-fluid">
             </a>
         </div>
@@ -10,7 +10,7 @@
         </button>
         <div class="collapse navbar-collapse col-10" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                @for (item of data.items; track $index) {
+                @for (item of navbar.items; track $index) {
                     @if (!item.main) {
                         <li class="nav-item col">
                             <a class="nav-link" href="{{item.route}}">{{item.name}}</a>
