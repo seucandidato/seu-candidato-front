@@ -16,6 +16,15 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  get<Response>(url:string) {
+    return this.http.get<Response>(url).pipe(
+      tap((response: any) => { 
+        this.log(response?.message); 
+      }),
+      catchError(this.handlerError<Response>())
+    )
+  }
+
   post<Request, Response>( url: string, item: Request, headers: any = null): Observable<Response> {
 
     const postItem = {
