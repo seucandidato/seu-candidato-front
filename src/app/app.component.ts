@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../environments/environment';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { buildMenu } from './services/interfaces/buildMenu';
+import { AccordionModule } from 'primeng/accordion';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +20,8 @@ import { buildMenu } from './services/interfaces/buildMenu';
     CommonModule,
     HttpClientModule,
     NgbAlertModule, 
-    NgbAccordionModule, 
     HeaderComponent, 
-    FooterComponent
+    FooterComponent,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

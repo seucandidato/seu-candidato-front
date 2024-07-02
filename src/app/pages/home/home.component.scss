@@ -1,0 +1,36 @@
+.home-page {
+    margin: 0px;
+    padding: 0px;
+    .title {
+        color: #220000;
+        font-family: 'Roboto Serif';
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 2%;
+    }
+    .carroussel {
+        margin-bottom: 0px;
+        img {
+            width: 100%;
+        }
+    }
+
+    .sites {
+        background-color: #CCCCCC;
+        .row-cards {
+            --bs-gutter-x: 3%;
+            --bs-gutter-y: 3%;
+
+        }
+    }
+
+    .faq {
+        max-width: 100%;
+        background-color: #CCCCCC;
+
+        .title {
+           color: #220000;
+        }
+    }
+
+}
