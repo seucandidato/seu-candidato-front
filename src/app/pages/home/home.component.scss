@@ -1,6 +1,6 @@
-.home-page {
-    margin: 0px;
-    padding: 0px;
+// .home-page {
+//     margin: 0px;
+//     padding: 0px;
     .title {
         color: #220000;
         font-family: 'Roboto Serif';
@@ -16,6 +16,8 @@
     }
 
     .sites {
+        background-color: #CCCCCC;
+        max-width: 100%;
         background-color: #CCCCCC;
         .row-cards {
             --bs-gutter-x: 3%;
@@ -33,4 +35,4 @@
         }
     }
 
-}
+// }

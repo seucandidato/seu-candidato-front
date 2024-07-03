@@ -1,4 +1,4 @@
-<div class="home-page">
+<!-- <div class="home-page"> -->
 
     <div class="carroussel">
         @if (images) {
@@ -58,6 +58,13 @@
                 <h2 class="title">Planos</h2>
             </div>
         </div>
+        <div class="row mt-4 pb-4 mb-0 row-cards">
+            @for(plan of plans; track $index) {
+            <div class="col-md-3 d-flex justify-content-center">
+                <app-card-plan></app-card-plan>
+            </div>
+            }
+        </div>
     </div>
 
 
@@ -67,8 +74,8 @@
                 <h2 class="title">Perguntas frequentes</h2>
             </div>
         </div>
-        <div class="flex justify-content-center">
-            <p-accordion class="accordion" [activeIndex]="0">
+        <div class="row">
+            <p-accordion class="col-md-12 accordion" [activeIndex]="0">
                 @for(question of faqQuestions; track $index) {
                 <p-accordionTab class="accordion-header" header={{question.question}}>
                     <p>
@@ -88,4 +95,4 @@
         </div>
     </div>
 
-</div>
+<!-- </div> -->

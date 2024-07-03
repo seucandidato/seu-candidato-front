@@ -1,0 +1,82 @@
+.card {
+    width: 100%;
+    .card-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #200;
+        padding-right: 4%;
+        padding-left: 4%;
+        padding-top: 8%;
+        padding-bottom: 8%;
+        margin: 4px;
+        border-radius: 4px;
+        height: 60px;
+
+        .card-img-top {
+            width: 77px;
+            height: 74px;
+            border-radius: 77px;
+            margin-right: 1rem;
+        }
+
+        .card-title {
+            color: #FFF;
+            font-family: "Roboto Serif";
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        padding-bottom: 10px;
+        .card-text {
+            color: var(--Heading-Title-Color, #152536);
+            font-family: "Roboto Condensed";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px;
+        }
+
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .price {
+            display: flex;
+            align-items: baseline;
+        }
+        .price .currency {
+            margin-right: 2px;
+            font-size: 14px; /* Tamanho menor para o símbolo de R$ */
+        }
+        .price .main-amount {
+            font-size: 32px; /* Tamanho maior para os dígitos principais */
+            font-weight: bold; /* Negrito para os dígitos principais */
+        }
+        .price .cents {
+            font-size: 14px; /* Tamanho menor para os centavos */
+        }
+        .price-text {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: -15px; /* Espaço entre o preço e o texto "mês" */
+        }
+
+        .btn {
+            margin-top: 10px;
+            width:60%;
+            background-color: #200;
+            border-color: #200;
+
+        }
+    }
+}
