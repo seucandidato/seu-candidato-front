@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap } from 'rxjs';
+import { AuthApiService } from '../authApi/auth-api.service';
+import { AuthComponent } from '../../pages/auth/auth.component';
 
 @Injectable({
   providedIn: 'any'
 })
 export class RequestService {
-  httpOptionsJson = {
-    headers: new HttpHeaders({'Content-type': 'application/json'}),
-  }
+  private httpOptions(headers: any = null): { headers: HttpHeaders } {
+    let httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  httpOptionsFormData = {
-    headers: new HttpHeaders({'Content-type': 'multipart/form-data'}),
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      httpHeaders = httpHeaders.set('Authorization', `Bearer ${token}`);
+    }
+
+    if (headers) {
+      httpHeaders = httpHeaders.set(headers.key, headers.value);
+    }
+
+    return { headers: httpHeaders };
   }
 
   constructor(private http: HttpClient) { }
 
-  post<Request, Response>( url: string, item: Request, headers: any = null): Observable<Response> {
-    const postItem = {
-      ...item,
-    }
-  
-    if (headers) {
-      this.httpOptionsJson.headers = this.httpOptionsJson.headers.append(
-        headers.key, 
-        headers.value
-      );
-    }
-  
-    const response = this.http.post<Response>(url, postItem, this.httpOptionsJson).pipe(
+  get<Response>(url: string, headers: any = null): Observable<Response> {
+    const getHttpOptions = this.httpOptions(headers);
+
+    return this.http.get<Response>(url, getHttpOptions).pipe(
       tap((response: any) => {
         this.log(response?.message);
       }),
@@ -36,8 +36,19 @@ export class RequestService {
         return of(error);
       })
     );
-  
-    return response;
+  }
+
+  post<Request, Response>(url: string, item: Request, headers: any = null): Observable<Response> {
+    const postHttpOptions = this.httpOptions(headers);
+
+    return this.http.post<Response>(url, item, postHttpOptions).pipe(
+      tap((response: any) => {
+        this.log(response?.message);
+      }),
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
   }
 
   private log(message: string) {

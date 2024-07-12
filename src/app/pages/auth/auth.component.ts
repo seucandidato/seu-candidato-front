@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
   @Input() submit = (form: FormGroup) => {};
   toast!: DataToast;
   confirmedLogin: boolean = false;
+  token: string = '';
 
   form: FormGroup;
 
@@ -55,7 +56,8 @@ export class AuthComponent implements OnInit {
                 this.toast = {title: response.error.error, message: response.error.message}; 
             } else { 
                 if (response && response.access_token) { 
-                    this.authService.login(response.access_token); 
+                  this.token = response.access_token;
+                  this.authService.login(response.access_token); 
                 } 
             } 
         }); 
