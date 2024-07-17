@@ -1,5 +1,6 @@
 .card {
     width: 100%;
+    height: 100%;
     .card-header {
         display: flex;
         flex-direction: column;
@@ -57,7 +58,7 @@
             margin-right: 2px;
             font-size: 14px; /* Tamanho menor para o símbolo de R$ */
         }
-        .price .main-amount {
+         .main-amount {
             font-size: 32px; /* Tamanho maior para os dígitos principais */
             font-weight: bold; /* Negrito para os dígitos principais */
         }

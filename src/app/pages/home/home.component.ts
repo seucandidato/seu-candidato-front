@@ -7,13 +7,14 @@ import { AccordionModule } from 'primeng/accordion';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CardPlanComponent } from '../../components/card-plan/card-plan.component';
+import { PlansService } from '../../services/plans/plans.service';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [NgbCarouselModule, CardSiteComponent, CardPlanComponent,AccordionModule, HttpClientModule],
-  providers: [FaqService],
+  providers: [FaqService, PlansService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -23,17 +24,25 @@ export class HomeComponent implements OnInit {
   items = ['First', 'Second', 'Third'];
   //TODO mockar dados e colocar para o componente
   cards = [1,2,3,4,5,6]
-  plans = [1,2,3,4]
   faqQuestions: any;
+  plans: any; 
 
-  constructor(private faqService:FaqService) {}
+  constructor(
+    private faqService: FaqService,
+    private plansService: PlansService,
+  ) {}
 
  async ngOnInit(): Promise<void> {
+
     this.faqService.getFaq().subscribe((response) => {
-      console.log(typeof(response))
       this.faqQuestions = response;
       console.log(this.faqQuestions)
     });
+
+    this.plansService.getPlans().subscribe((response) => {
+      this.plans = response.data;
+      console.log(this.plans);
+    })
   }
 
 }

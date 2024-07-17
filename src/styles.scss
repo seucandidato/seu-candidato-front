@@ -7,8 +7,16 @@
 .p-accordion-header, .p-accordion-header-link {
     background-color: #FFFF;
     color: #220000;
+    border-radius: 4px;
+}
+
+.p-accordion-header-link:hover {
+    background-color: #edebeb;
+    color: #220000;
+    text-decoration: none;
 }
 
 .p-accordion-content {
     color: black;
+    text-align: start;
 }

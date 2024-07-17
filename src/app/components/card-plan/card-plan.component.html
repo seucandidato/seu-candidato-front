@@ -10,23 +10,31 @@
 <body>
     <div class="card" style="width: 16rem;">
         <div class="card-header d-flex">
-            <h5 class="card-title">Plan</h5>
+            <h5 class="card-title">{{ plan.title }}</h5>
         </div>
         <div class="card-body">
+
             <ul class="list-unstyled">
-                <li><i class="bi bi-check2-circle"></i> Item 1</li>
-                <li><i class="bi bi-check2-circle"></i> Item 2</li>
-                <li><i class="bi bi-check2-circle"></i> Item 3</li>
-                <li><i class="bi bi-check2-circle"></i> Item 4</li>
+                @for(benefit of plan.benefits; track $index) {
+                <li><i class="bi bi-check2-circle"></i> {{benefit.title}}</li>
+                }
             </ul>
-            <div class="price-container">
-                <span class="price">
-                    <span class="currency">R$</span>
-                    <span class="main-amount">00</span>,
-                    <span class="cents">00</span>
-                </span>
-                <div class="price-text">mês</div>
-            </div>
+
+            @if(plan.title === "Personalizado") {
+                <span class="main-amount">Sob Análise</span>
+            } @else {
+                <div class="price-container">
+                    <span class="price">
+                        <span class="currency">R$</span>
+                        <span class="main-amount">{{ amount }}</span>,
+                        <span class="cents">{{ cents }}</span>
+                    </span>
+                    <div class="price-text">mês</div>
+                </div>
+            }
+
+
+
             <a href="#" class="btn btn-primary">Contratar</a>
         </div>
     </div>

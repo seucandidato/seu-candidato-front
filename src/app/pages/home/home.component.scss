@@ -7,6 +7,7 @@
         font-size: 32px;
         font-weight: 700;
         margin-bottom: 2%;
+        margin-top: 40px
     }
     .carroussel {
         margin-bottom: 0px;
@@ -17,8 +18,7 @@
 
     .sites {
         background-color: #CCCCCC;
-        max-width: 100%;
-        background-color: #CCCCCC;
+
         .row-cards {
             --bs-gutter-x: 3%;
             --bs-gutter-y: 3%;
@@ -27,12 +27,19 @@
     }
 
     .faq {
-        max-width: 100%;
         background-color: #CCCCCC;
 
         .title {
            color: #220000;
         }
+        .title:hover {
+            text-decoration: none;
+            color: #220000;
+        }
     }
 
 // }
+.background {
+    background-color: #CCCCCC;
+
+}
