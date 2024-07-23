@@ -8,12 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CardPlanComponent } from '../../components/card-plan/card-plan.component';
 import { PlansService } from '../../services/plans/plans.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgbCarouselModule, CardSiteComponent, CardPlanComponent,AccordionModule, HttpClientModule],
+  imports: [NgbCarouselModule, CardSiteComponent, CardPlanComponent,AccordionModule, HttpClientModule, ReactiveFormsModule],
   providers: [FaqService, PlansService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
   cards = [1,2,3,4,5,6]
   faqQuestions: any;
   plans: any; 
+  contactForm: FormGroup = new FormGroup({});
 
   constructor(
     private faqService: FaqService,
@@ -33,7 +35,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
  async ngOnInit(): Promise<void> {
-
+    this.initForm();
+  
     this.faqService.getFaq().subscribe((response) => {
       this.faqQuestions = response;
       console.log(this.faqQuestions)
@@ -44,5 +47,23 @@ export class HomeComponent implements OnInit {
       console.log(this.plans);
     })
   }
+
+  initForm():void {
+    this.contactForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      whatsapp: new FormControl(false, [Validators.required]),
+      subject: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required])
+    }) 
+  }
+
+  submitForm() {
+    const data = this.contactForm.value;
+    console.log(data);
+
+  }
+
+
 
 }

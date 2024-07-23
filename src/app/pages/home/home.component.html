@@ -98,6 +98,54 @@
             <h2 class="title">Contato</h2>
         </div>
     </div>
+
+    <form [formGroup]="contactForm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <input formControlName="name"  type="name" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="mb-3">
+                    <input formControlName="phone" type="phone" class="form-control" id="exampleFormControlInput1" placeholder="(99) 99999-9999">
+                  </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-check">
+                    <input formControlName="whatsapp" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Whatsapp ?
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <input formControlName="subject" type="subject" class="form-control" id="exampleFormControlInput1" placeholder="Assunto">
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <textarea formControlName="message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensagem"></textarea>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+                <div class="mb-3">
+                    <a href="#" (click)="submitForm()" class="btn btn-primary">Contratar</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
 </div>
 
 <!-- </div> -->
